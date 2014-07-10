@@ -7,6 +7,49 @@ The components themselves rely on Backbone (and Underscore), JQuery, Require, an
 #To Use#
 For use, copy the "js/Components" directory to your project and use as needed.
 
+Below is the standard way to use the button:
+
+```JavaScript
+var model = new Backbone.Model({
+    prop: "name"
+});
+
+var buttonComponent = new ButtonComponent({
+    model: model,
+    property: "prop",
+    onClick: function () {
+        done();
+    }
+});
+
+buttonComponent.render();
+```
+
+The following is also an aceptable use case, however you lose the data-binding of the Backbone Model
+
+```JavaScript
+var buttonComponent = new ButtonComponent({
+    model: "name",
+    onClick: function () {
+        done();
+    }
+});
+
+buttonComponent.render();
+```
+
+Use a Component View (a component that has the ability to have sub-components) as follows:
+
+```JavaScript
+this.mainView = new ComponentView({
+  template: '<div class="socket-one"></div><div class="socket-two"></div>',
+  model: ""
+});
+
+this.mainView.components[".socket-one"] = [buttonComponent, textComponent];
+this.mainView.components[".socket-two"] = toggleComponent;
+```
+
 #Example App#
 To run the example app:
 
