@@ -14,7 +14,10 @@ require([
         "Button",
         "Checkbox",
         "Link",
-        "Repeater"
+        "List",
+        "Repeater",
+        "Hidable",
+        "Radio-Group"
     ];
 
     for (var i = specs.length - 1; i >= 0; i--) {

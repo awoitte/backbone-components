@@ -12,8 +12,10 @@
      */
     var ListComponent = Component.extend({
 
+      tagName: "ul",
+
       initialize: function() {
-        this.options.template = "<ul>{{#items}} <li>{{text}}</li> {{/items}}</ul>";
+        this.options.template = "{{#items}} <li>{{text}}</li> {{/items}}";
 
         ListComponent.__super__.initialize.apply(this, arguments);
       },
@@ -21,8 +23,8 @@
       inject: function (collection) {
         var items = [],
             that = this;
-        collection.each(function (item) {
-          items.push({text: item.get(that.options.property)});
+        collection.forEach(function (item) {
+          items.push({text: item.get ? item.get(that.options.property) : item});
         });
         return {items: items};
       }

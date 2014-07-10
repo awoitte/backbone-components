@@ -23,6 +23,7 @@ define(['Components/Base/TemplateView', 'backbone'], function(TemplateView, Back
 
             it("should listen to its model if it's a backbone model and call render if that model changes", function() {
                 templateView.render = jasmine.createSpy();
+
                 var model = new Backbone.Model();
 
                 templateView.setModel(model);

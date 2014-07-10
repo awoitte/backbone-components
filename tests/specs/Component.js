@@ -17,6 +17,17 @@ define(['Components/Base/Component', 'backbone'], function(Component, Backbone) 
                 expect(component.$el.html()).toBe("test");
             });
 
+            it("should detect if its model is not a backbone model and provide it to the template directly as 'data'", function() {
+                var component = new Component({
+                    model: "test2",
+                    template: "{{data}}"
+                });
+
+                component.render();
+
+                expect(component.$el.html()).toBe("test2");
+            });
+
         });
     };
 });
