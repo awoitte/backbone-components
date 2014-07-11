@@ -51,12 +51,18 @@ this.mainView.components[".socket-two"] = toggleComponent;
 ```
 
 #Example App#
-To run the example app:
 
-Since require pulls in files from other directories you'll need to host the files on a server before you can see the example running (running locally makes the browser think it's an XSS attack). If you want to do this with node follow the steps below:
+A live preview is available at http://awoitte.github.io/backbone-components/ 
+
+To run the example app locally:
+
+Due to the way requirejs pulls in files from other directories you'll need to host the files on a server before you can see the example running (running directly from the files makes the browser think it's an XSS attack). If you want to do this with node follow the steps below:
 
 Make sure node is installed and then run the command:
+
+```JavaScript
 npm install connect
+```
 
 you can then start the server with:
 
