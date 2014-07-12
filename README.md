@@ -61,13 +61,13 @@ Due to the way requirejs pulls in files from other directories you'll need to ho
 Make sure node is installed and then run the command:
 
 ```JavaScript
-npm install connect
+npm install connect serve-static
 ```
 
 you can then start the server with:
 
 ```JavaScript
-node server.js
+node server
 ```
 
 The page is now accesible at http://localhost:8080
