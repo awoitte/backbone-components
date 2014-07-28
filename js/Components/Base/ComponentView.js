@@ -23,6 +23,7 @@
           var contentOptions = {};
 
           if (this.options.forwardModel) contentOptions.model = this.model;
+          else if(this.options.forwardProperty) contentOptions.model = this.model.get(this.options.forwardProperty);
 
           this.component = new this.options.component(_.extend(contentOptions,
             this.options.componentOptions

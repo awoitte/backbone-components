@@ -11,6 +11,7 @@
     var SearchComponent = ComponentView.extend({
 
       initialize: function() {
+        this.options.manualUpdate = true;
         SearchComponent.__super__.initialize.apply(this, arguments);
 
 
