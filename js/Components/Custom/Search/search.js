@@ -73,6 +73,7 @@
       },
 
       change: function (val, e) {
+        this.toggleCancel(val);
         if(this.options.onChange) this.options.onChange(val, e);
       },
 
