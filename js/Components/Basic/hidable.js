@@ -14,7 +14,7 @@
       render: function() {
         HidableComponent.__super__.render.apply(this, arguments);
         var visibility = this.options.isHidden ? this.options.isHidden(this.model) : this.model.get(this.options.property);
-        this.$el.toggle(!!visibility);
+        this.$el.css("display", !!visibility ? this.options.displayType || "block" : "none");
       },
 
     });
