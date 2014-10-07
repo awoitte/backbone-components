@@ -26,7 +26,7 @@
        * onClick callback
        */
       click: function (e) {
-        if(this.options.onClick) this.options.onClick(e);
+        if(this.options.onClick) this.options.onClick(e, this.model);
       }
     });
 

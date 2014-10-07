@@ -34,9 +34,9 @@
 
         //update the model for each component (important if the collection's order has changed)
         for (var i = 0; i < smallestLength; i++) {
-          if(componentList[i]) componentList[i].setModel(this.getModel(i));
+          if(componentList[i] && !this.options.alwaysFresh) componentList[i].setModel(this.getModelAt(i));
           else componentList[i] = this.makeNewComponent({
-              model: this.getModel(i)
+              model: this.getModelAt(i)
             });
         }
 
@@ -45,7 +45,7 @@
           for (var j = smallestLength; j < actualLength; j++) {
             //create a new component
             componentList[j] = this.makeNewComponent({
-              model: this.getModel(j)
+              model: this.getModelAt(j)
             });
           }
         } else if (actualLength < currentLength) {
@@ -57,7 +57,7 @@
 
       },
 
-      getModel: function (i) {
+      getModelAt: function (i) {
         //using a backbone collection V.S. an array
         return this.model.models ? this.model.models[i] : this.model[i];
       },

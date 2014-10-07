@@ -17,7 +17,9 @@
 
         var that = this;
 
-        this.input = new InputComponent({
+        this.input = new InputComponent(_.extend({},
+          this.options.inputOptions, //defaults
+          {
           className: "input-text input-search",
           model: this.model,
           property: this.options.property,
@@ -27,7 +29,7 @@
           onChange: function (val, e) {
             that.change(val, e);
           }
-        });
+        }));
 
         this.cancel = new ButtonComponent({
           className: "input-search-cancel",

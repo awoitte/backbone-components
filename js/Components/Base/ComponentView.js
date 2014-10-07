@@ -68,7 +68,7 @@
         //rather than have a generic list component view and require that a container div be specified, have
         //a component value accept arrays to specify a list of components
         for (var prop in this.components) {
-          var value = this.components[prop],
+          var value = _.result(this.components,prop),
             componentList = Array.isArray(value) ? value : [value];
           componentList.forEach(function(component) {
             callback(component, prop);

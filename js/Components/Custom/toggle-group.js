@@ -16,27 +16,24 @@
           hidableDefaults = {},
           buttonDefaults = {};
 
-        if(this.options.forwardModel){
+        if (this.options.forwardModel) {
           hidableDefaults.model = this.model;
           buttonDefaults.model = this.model;
         }
 
         this.content = new HidableComponent(_.extend(hidableDefaults,
-          this.options.hidableOptions,
-          {
-          isHidden: function(model) {
-            return !that.isHidden;
-          }
-        })
-        );
+          this.options.hidableOptions, {
+            isHidden: function(model) {
+              return !that.isHidden;
+            }
+          }));
 
         this.toggleButton = new ButtonComponent(_.extend(buttonDefaults,
-          this.options.buttonOptions,
-          {
-          onClick: function() {
-            that.toggle();
-          }
-        }));
+          this.options.buttonOptions, {
+            onClick: function() {
+              that.toggle();
+            }
+          }));
 
         this.isHidden = true;
 
@@ -45,8 +42,8 @@
 
       setModel: function(model) {
         ToggleGroupComponent.__super__.setModel.apply(this, arguments);
-        if(this.options.forwardModel){
-          this.eachComponent(function (component) {
+        if (this.options.forwardModel) {
+          this.eachComponent(function(component) {
             component.setModel(model);
           });
         }
@@ -58,10 +55,24 @@
       },
 
       toggle: function(e) {
-          this.isHidden = !this.isHidden;
-          this.render();
-          if(this.options.onToggle) this.options.onToggle(this.isHidden, e);
-      }
+        this.isHidden = !this.isHidden;
+        this.updateFromToggle(e);
+      },
+
+      expand: function() {
+        this.isHidden = false;
+        this.updateFromToggle(e);
+      },
+
+      collapse: function() {
+        this.isHidden = true;
+        this.updateFromToggle(e);
+      },
+
+      updateFromToggle: function(e) {
+        this.render();
+        if (this.options.onToggle) this.options.onToggle(this.isHidden, e);
+      },
 
     });
 

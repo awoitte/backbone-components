@@ -13,7 +13,7 @@
      */
     var CheckBoxComponent = Component.extend({
       events: {
-        "change input": "change"
+        "change input" : "change"
       },
 
       tagName: "label",
@@ -25,11 +25,14 @@
       },
 
       change: function(e) {
-        var val = e.target.checked;
-
-        if(this.model.set) this.model.set(this.options.checkedProperty, val);
+        var val = e.target.checked,
+        that = this;
 
         if (this.options.onChange) this.options.onChange(val, e);
+
+        setTimeout(function () {
+          if(!that.options.manualUpdate && that.model.set) that.model.set(that.options.checkedProperty, val);
+        },1);//fix issue where firefox triggers event twice
       },
 
       inject: function(model) {
