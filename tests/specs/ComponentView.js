@@ -144,6 +144,34 @@ define(['Components/Base/ComponentView'], function(ComponentView) {
                 });
             });
 
+            it("should allow values of the components object to be functions", function() {
+                var subComponentOne = new ComponentView(),
+                    subComponentTwo = new ComponentView(),
+                    flag = true;
+
+                var components = {
+                    "div": function () {
+                        return flag ? subComponentOne : subComponentTwo;
+                    }
+                };
+
+                var componentsView = new ComponentView({
+                    components: components
+                });
+
+                componentsView.eachComponent(function(component, prop) {
+                    expect(component).toBe(subComponentOne);
+                    expect(prop).toBe("div");
+                });
+
+                flag = false;
+
+                componentsView.eachComponent(function(component, prop) {
+                    expect(component).toBe(subComponentTwo);
+                    expect(prop).toBe("div");
+                });
+            });
+
             it("should destroy its sub components on destroy", function() {
                 var subComponent = new ComponentView();
 

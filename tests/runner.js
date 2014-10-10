@@ -17,7 +17,8 @@ require([
         "List",
         "Repeater",
         "Hidable",
-        "Radio-Group"
+        "Radio-Group",
+        "Radio"
     ];
 
     for (var i = specs.length - 1; i >= 0; i--) {
