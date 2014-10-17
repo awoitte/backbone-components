@@ -11,6 +11,14 @@ define(['Components/Basic/Repeater', 'Components/Base/Component', 'backbone'], f
             }
         });
 
+        var IdComponent = Component.extend({
+            inject: function() {
+                return {
+                    data: this.cid
+                };
+            }
+        });
+
         repeater.render();
 
         describe("Repeater", function() {
@@ -33,6 +41,53 @@ define(['Components/Basic/Repeater', 'Components/Base/Component', 'backbone'], f
                 });
 
                 expect(repeater.$el.html()).toBe("<div>text</div><div>text2</div>");
+            });
+
+            it("should change view order when collection order changes", function() {
+
+                expect(repeater.$el.html()).toBe("<div>text</div><div>text2</div>");
+
+                collection.unshift(collection.pop()); //reverse order
+
+                expect(repeater.$el.html()).toBe("<div>text2</div><div>text</div>");
+
+            });
+
+            it("should call setModel on component on reorder", function() {
+                var firstComponent = _.first(repeater.components[repeater.getTagName()]);
+
+                spyOn(firstComponent, "setModel");
+
+                collection.unshift(collection.pop()); //reverse order
+
+                expect(firstComponent.setModel).toHaveBeenCalled();
+            });
+
+            it("should instantiate new Components on reorder rather than calling setModel if alwaysFresh option is true", function() {
+                repeater = new RepeaterComponent({
+                    alwaysFresh: true,
+                    model: collection,
+                    modelComponent: Component,
+                    modelOptions: {
+                        property: "name",
+                        template: "{{data}}"
+                    }
+                });
+                repeater.render();
+
+
+                var firstComponent = _.first(repeater.components[repeater.getTagName()]);
+
+                spyOn(firstComponent, "setModel");
+
+                collection.unshift(collection.pop()); //reverse order
+
+                expect(firstComponent.setModel).not.toHaveBeenCalled();
+
+                //the first component should be replaced with a new component in the repeater component list
+                expect(_.contains(repeater.components[repeater.getTagName()], firstComponent)).toBeFalsy();
+
+
             });
 
             it("should remove a component when a model is removed from the collection", function() {
