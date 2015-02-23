@@ -20,9 +20,9 @@
        */
       initialize: function () {
         this.options.template = this.options.template || "";
-        this.setModel(this.options.model === undefined ? "" : this.options.model);
-
         this.template = Mustache.compile(this.options.template);
+
+        this.setModel(this.options.model === undefined ? "" : this.options.model);
         TemplateView.__super__.initialize.apply(this, arguments);
       },
 
