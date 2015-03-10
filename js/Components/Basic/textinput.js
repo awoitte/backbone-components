@@ -25,13 +25,16 @@
       change: function(e) {
         var val = e.target.value;
 
-        this.model.set(this.options.property, val);
+        if(!this.options.manualUpdate && this.model.set) this.model.set(this.options.property, val);
 
         if (this.options.onChange) this.options.onChange(val, e);
       },
 
       keyup: function (e) {
         var val = e.target.value;
+
+        if(!this.options.manualUpdateKeyup && this.model.set) this.model.set(this.options.property, val);
+        if(!this.options.stopRefocus) this.$el.focus();//fix bug where a parent component would share the same model and setting the property would loose focus on typing
 
         if (this.options.onKeyup) this.options.onKeyup(val, e);
       },
