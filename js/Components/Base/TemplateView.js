@@ -20,7 +20,7 @@
        */
       initialize: function () {
         this.options.template = this.options.template || "";
-        this.template = Mustache.compile(this.options.template);
+        this.setTemplate(this.options.template)
 
         this.setModel(this.options.model === undefined ? "" : this.options.model);
         TemplateView.__super__.initialize.apply(this, arguments);
@@ -60,6 +60,10 @@
         this.model = model;
 
         this.options.manualUpdate || this.model && this.model.bind && this.listenTo(this.model, "change reset add remove", this.render);
+      },
+
+      setTemplate: function  (template) {
+        this.template = Mustache.compile(template);
       },
 
       /**

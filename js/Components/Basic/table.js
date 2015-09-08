@@ -3,7 +3,7 @@
 
     define([
         'Components/Base/ComponentView',
-        'Components/Basic/repeater'
+        'Components/Basic/immutable-repeater'
     ], function(ComponentView, RepeaterComponent) {
 
         /**
