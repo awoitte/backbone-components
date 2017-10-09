@@ -5,18 +5,8 @@ import ToggleComponent from './Components/Custom/toggle-group';
 import ComponentRepeater from './Components/Basic/repeater';
 import RowComponent from './Components/Custom/row';
 import RadioGroupComponent from './Components/Basic/radio-group';
-
-var AppTpl = '\
-Welcome to the Component Prototype App!\
-<div class="testDiv"></div>';
-
-var TableTpl = '\
-<thead>\
-<th>Template name</th>\
-<th>Type</th>\
-<th>Last updated</th>\
-<th>Options</th>\
-</thead>';
+import AppTpl from './Templates/app.html';
+import TableTpl from './Templates/table.html';
 
 var App = Backbone.Model.extend({
   initialize: function() {

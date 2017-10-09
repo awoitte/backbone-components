@@ -180,42 +180,42 @@ var Component = TemplateView.extend({
 * @constructor
 */
 var TextInputComponent = Component.extend({
-tagName: "input",
+    tagName: "input",
 
-events: {
-  "change": "change",
-  "keyup": "keyup"
-},
+    events: {
+      "change": "change",
+      "keyup": "keyup"
+    },
 
-initialize: function() {
-  TextInputComponent.__super__.initialize.apply(this, arguments);
-},
+    initialize: function() {
+      TextInputComponent.__super__.initialize.apply(this, arguments);
+    },
 
-change: function(e) {
-  var val = e.target.value;
+    change: function(e) {
+      var val = e.target.value;
 
-  if (!this.manualUpdate && this.model.set) this.model.set(this.property, val, {
-      silent: !this.setLoud //fix bug where a parent component would share the same model and setting the property would loose focus on typing
-    });
+      if (!this.manualUpdate && this.model.set) this.model.set(this.property, val, {
+          silent: !this.setLoud //fix bug where a parent component would share the same model and setting the property would loose focus on typing
+        });
 
-  if (this.onChange) this.onChange(val, e);
-},
+      if (this.onChange) this.onChange(val, e);
+    },
 
-keyup: function(e) {
-  var val = e.target.value;
+    keyup: function(e) {
+      var val = e.target.value;
 
-  if (!this.manualUpdateKeyup && this.model.set) this.model.set(this.property, val, {
-      silent: !this.setLoud //fix bug where a parent component would share the same model and setting the property would loose focus on typing
-    });
+      if (!this.manualUpdateKeyup && this.model.set) this.model.set(this.property, val, {
+          silent: !this.setLoud //fix bug where a parent component would share the same model and setting the property would loose focus on typing
+        });
 
-  if (this.onKeyup) this.onKeyup(val, e);
-},
+      if (this.onKeyup) this.onKeyup(val, e);
+    },
 
-render: function() {
-  TextInputComponent.__super__.render.apply(this, arguments);
+    render: function() {
+      TextInputComponent.__super__.render.apply(this, arguments);
 
-  this.$el.val(this.model.get(this.property));
-}
+      this.$el.val(this.model.get(this.property));
+    }
 });
 
 /**
@@ -417,11 +417,7 @@ var LinkComponent = Component.extend({
   }
 });
 
-var RowTpl = '\
-<td class="name"></td>\
-<td class="type"></td>\
-<td class="updated"></td>\
-<td class="options"></td>';
+var RowTpl = "<td class=\"name\"></td>\r\n<td class=\"type\"></td>\r\n<td class=\"updated\"></td>\r\n<td class=\"options\"></td>\r\n";
 
 var RowComponent = ComponentView.extend({
 
@@ -523,17 +519,9 @@ var RadioGroupComponent = RepeaterComponent.extend({
 
 });
 
-var AppTpl = '\
-Welcome to the Component Prototype App!\
-<div class="testDiv"></div>';
+var AppTpl = "Welcome to the Component Prototype App!\r\n<div class=\"testDiv\"></div>\r\n";
 
-var TableTpl = '\
-<thead>\
-<th>Template name</th>\
-<th>Type</th>\
-<th>Last updated</th>\
-<th>Options</th>\
-</thead>';
+var TableTpl = "<thead>\r\n<th>Template name</th>\r\n<th>Type</th>\r\n<th>Last updated</th>\r\n<th>Options</th>\r\n</thead>\r\n\r\n";
 
 var App = Backbone.Model.extend({
   initialize: function() {

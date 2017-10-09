@@ -1,12 +1,7 @@
 import ComponentView from '../Base/ComponentView';
 import ButtonComponent from '../Basic/button';
 import LinkComponent from '../Basic/link';
-
-var RowTpl = '\
-<td class="name"></td>\
-<td class="type"></td>\
-<td class="updated"></td>\
-<td class="options"></td>';
+import RowTpl from '../../Templates/row.html'
 
 var RowComponent = ComponentView.extend({
 
