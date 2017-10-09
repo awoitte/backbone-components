@@ -1,33 +1,26 @@
-! function() {
-    'use strict';
+import RepeaterComponent from './repeater';
+import RadioComponent from './radio';
 
-    define([
-        'Components/Basic/repeater',
-        'Components/Basic/radio'
-    ], function(RepeaterComponent, RadioComponent) {
+/**
+ * A simple radio group component. Creates a radio element for each model in it's model property collection.
+ * Groups the radio buttons together.
+ * @constructor
+ */
+var RadioGroupComponent = RepeaterComponent.extend({
 
-        /**
-         * A simple radio group component. Creates a radio element for each model in it's model property collection.
-         * Groups the radio buttons together.
-         * @constructor
-         */
-        var RadioGroupComponent = RepeaterComponent.extend({
-
-            initialize: function() {
-                this.options.modelOptions = this.options.modelOptions || {};
-                _.extend(this.options.modelOptions, {
-                    group: this.id || this.cid,
-                    property: this.options.property
-                });
-
-                this.options.modelComponent = RadioComponent;
-
-                RadioGroupComponent.__super__.initialize.apply(this, arguments);
-            }
-
+    initialize: function(options) {
+        this.modelOptions = options.modelOptions || {};
+        _.extend(this.modelOptions, {
+            group: options.id || this.id || this.cid,
+            property: options.property
         });
 
+        this.modelComponent = RadioComponent;
 
-        return RadioGroupComponent;
-    });
-}();
+        RadioGroupComponent.__super__.initialize.apply(this, arguments);
+    }
+
+});
+
+
+export default RadioGroupComponent;

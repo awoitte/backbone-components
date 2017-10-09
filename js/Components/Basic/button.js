@@ -1,35 +1,28 @@
-! function() {
-  'use strict';
+import Component from '../Base/Component';
 
-  define([
-    'Components/Base/Component'
-  ], function(Component) {
+/**
+ * A simple button component. Uses the button element.
+ * @constructor
+ */
+var ButtonComponent = Component.extend({
+  tagName: "button",
 
-    /**
-     * A simple button component. Uses the button element.
-     * @constructor
-     */
-    var ButtonComponent = Component.extend({
-      tagName: "button",
+  events: {
+    "click": "click"
+  },
 
-      events: {
-        "click": "click"
-      },
+  initialize: function() {
+    this.template = this.template || "{{data}}";
 
-      initialize: function() {
-        this.options.template = this.options.template || "{{data}}";
+    ButtonComponent.__super__.initialize.apply(this, arguments);
+  },
 
-        ButtonComponent.__super__.initialize.apply(this, arguments);
-      },
+  /**
+   * onClick callback
+   */
+  click: function (e) {
+    if(this.onClick) this.onClick(e, this.model);
+  }
+});
 
-      /**
-       * onClick callback
-       */
-      click: function (e) {
-        if(this.options.onClick) this.options.onClick(e, this.model);
-      }
-    });
-
-    return ButtonComponent;
-  });
-}();
+export default ButtonComponent;

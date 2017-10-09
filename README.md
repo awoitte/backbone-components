@@ -2,10 +2,10 @@
 A Component System for use with backbone.
 
 #Requirements#
-The components themselves rely on Backbone (and Underscore), JQuery, Require, and Mustache
+The components themselves rely on Backbone (and Underscore), JQuery (or substitute like Zepto), and Mustache
 
 #To Use#
-For use, copy the "js/Components" directory to your project and use as needed.
+Copy the "js/Components" directory to your project and import as needed.
 
 Below is the standard way to use the button:
 
@@ -52,25 +52,9 @@ this.mainView.components[".socket-two"] = toggleComponent;
 
 #Example App#
 
-A live preview is available at http://awoitte.github.io/backbone-components/ 
+A live preview is available at http://awoitte.github.io/backbone-components/
 
-To run the example app locally:
-
-Due to the way requirejs pulls in files from other directories you'll need to host the files on a server before you can see the example running (running directly from the files makes the browser think it's an XSS attack). If you want to do this with node follow the steps below:
-
-Make sure node is installed and then run the command:
-
-```JavaScript
-npm install connect serve-static
-```
-
-you can then start the server with:
-
-```JavaScript
-node server
-```
-
-The page is now accesible at http://localhost:8080
+To run the example app locally simply open index.html in any modern browser.
 
 #Custom Components#
 

@@ -1,24 +1,17 @@
-! function() {
-  'use strict';
+import ComponentView from '../Base/ComponentView';
 
-  define([
-    'Components/Base/ComponentView'
-  ], function(ComponentView) {
+/**
+ * A simple container component. hides itself based on the return of isHidden method or truthyness of model's property
+ * @constructor
+ */
+var HidableComponent = ComponentView.extend({
 
-    /**
-     * A simple container component. hides itself based on the return of isHidden method or truthyness of model's property
-     * @constructor
-     */
-    var HidableComponent = ComponentView.extend({
+  render: function() {
+    HidableComponent.__super__.render.apply(this, arguments);
+    var visibility = this.isHidden ? this.isHidden(this.model) : this.model.get(this.property);
+    this.$el.css("display", !!visibility ? this.displayType || "block" : "none");
+  },
 
-      render: function() {
-        HidableComponent.__super__.render.apply(this, arguments);
-        var visibility = this.options.isHidden ? this.options.isHidden(this.model) : this.model.get(this.options.property);
-        this.$el.css("display", !!visibility ? this.options.displayType || "block" : "none");
-      },
+});
 
-    });
-
-    return HidableComponent;
-  });
-}();
+export default HidableComponent;

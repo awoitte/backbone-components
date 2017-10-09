@@ -1,28 +1,20 @@
-! function() {
-  'use strict'
+var BaseView = Backbone.View.extend({
 
-  define([
-    'jquery',
-    'backbone'
-  ], function($, Backbone) {
+    initialize: function(options){
+        _.extend(this, options);
+    },
 
-    var BaseView = Backbone.View.extend({
+  //THIS FUNCTION WILL LIKELY BE OVERWRITTEN
+  //clean up anything that might require cleaning on view destruction
+  destroy: function () {
 
-      //THIS FUNCTION WILL LIKELY BE OVERWRITTEN
-      //clean up anything that might require cleaning on view destruction
-      destroy: function () {
+  },
 
-      },
-
-      getTagName: function () {
-        return this.tagName || "div";
-      }
+  getTagName: function () {
+    return this.tagName || "div";
+  }
 
 
-    });
+});
 
-    return BaseView;
-
-  });
-
-}();
+export default BaseView;

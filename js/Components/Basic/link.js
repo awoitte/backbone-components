@@ -1,32 +1,25 @@
-! function() {
-  'use strict';
+import Component from '../Base/Component';
 
-  define([
-    'Components/Base/Component'
-  ], function(Component) {
+/**
+ * A simple link component. Uses the anchor element.
+ * @constructor
+ */
+var LinkComponent = Component.extend({
+  events: {
+    "click": "click"
+  },
 
-    /**
-     * A simple link component. Uses the anchor element.
-     * @constructor
-     */
-    var LinkComponent = Component.extend({
-      events: {
-        "click": "click"
-      },
+  tagName: "a",
 
-      tagName: "a",
+  initialize: function() {
+    this.template = "{{data}}";
 
-      initialize: function() {
-        this.options.template = "{{data}}";
+    LinkComponent.__super__.initialize.apply(this, arguments);
+  },
 
-        LinkComponent.__super__.initialize.apply(this, arguments);
-      },
+  click: function (e) {
+    if(this.onClick) this.onClick(e);
+  }
+});
 
-      click: function (e) {
-        if(this.options.onClick) this.options.onClick(e);
-      }
-    });
-
-    return LinkComponent;
-  });
-}();
+export default LinkComponent;
